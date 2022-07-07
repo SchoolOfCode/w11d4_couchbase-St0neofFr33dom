@@ -61,11 +61,8 @@ export async function getBooks() {
         const cluster = await couchbaseConnect();
          const bucket = await getbucket(cluster);
         const scope = bucket.scope("_default");
-        const collection = getCollection(scope);
         const query = `SELECT * FROM Books`
-    
         const result = await scope.query(query)
-        console.log(result)
         result.rows.forEach((row) => {
             console.log('Query Row: ', row)
         })
@@ -80,7 +77,6 @@ export async function searchBooksByQuery(search) {
         const cluster = await couchbaseConnect();
          const bucket = await getbucket(cluster);
         const scope = bucket.scope("_default");
-        const collection = getCollection(scope);
         const query = `SELECT * FROM Books WHERE title LIKE $1 OR author LIKE $1`
         const options = {parameters:[`%${search}%`]}
         console.log(options)

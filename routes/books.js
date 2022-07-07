@@ -1,11 +1,6 @@
 import express from "express";
 const router = express.Router();
 
-import {
-  
-  searchBooksByTitle,
-  searchBooksByAuthor,
-} from "../models/books.js";
 
 import{
   getBooks,
